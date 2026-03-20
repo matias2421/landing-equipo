@@ -970,9 +970,7 @@ body:has(button:hover) #cursor-ring  { width: 52px; height: 52px; border-color: 
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px 28px; }
 }
 
-@media (max-width: 560px) {
-  .cta-section    { padding: 72px 20px; }
-  .form-card      { padding: 36px 24px; }
-  .footer-grid    { grid-template-columns: 1fr; }
-  .footer-bottom  { flex-direction: column; align-items: flex-start; }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

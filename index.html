@@ -3,300 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ShopySex</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="script.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="header-topbar">
-    <span><i class="fa-solid fa-lock"></i> Compras 100% discretas</span>
-    <span><i class="fa-solid fa-truck"></i> Envío en empaque anónimo</span>
-    <span class="topbar-age"><i class="fa-solid fa-circle-exclamation"></i> Solo mayores de +18</span>
-  </div>
 
-  <div class="header-main">
-    <a href="#" class="header-logo">Shopy<span>Sex</span></a>
-
-    <div class="header-search">
-      <input type="text" placeholder="Buscar productos...">
-      <button><i class="fa-solid fa-magnifying-glass"></i></button>
+  <header>
+    <div class="header-topbar">
+      <span><i class="fa-solid fa-lock"></i> Compras 100% discretas</span>
+      <span><i class="fa-solid fa-truck"></i> Envío en empaque anónimo</span>
+      <span class="topbar-age"><i class="fa-solid fa-circle-exclamation"></i> Solo mayores de +18</span>
     </div>
 
-    <div class="header-actions">
-      <a href="#" aria-label="Mi cuenta"><i class="fa-regular fa-user"></i></a>
-      <a href="#" aria-label="Favoritos"><i class="fa-regular fa-heart"></i></a>
-      <a href="#" class="cart-btn" aria-label="Carrito">
-        <i class="fa-solid fa-bag-shopping"></i>
-        <span class="cart-count">3</span>
-      </a>
-    </div>
-  </div>
+    <div class="header-main">
+      <a href="#" class="header-logo">Shopy<span>Sex</span></a>
 
-  <nav class="header-nav">
-    <ul>
-      <li><a href="#">Para ellas</a></li>
-      <li><a href="#">Para ellos</a></li>
-      <li><a href="#">Para parejas</a></li>
-      <li><a href="#">Lubricantes</a></li>
-      <li><a href="#">Lencería</a></li>
-      <li><a href="#" class="nav-sale">Ofertas</a></li>
-    </ul>
-  </nav>
-    </header>
-
-    <main>
-        <!-- Cursor personalizado -->
-  <div class="cursor"      id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
-  <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
-  <section class="hero">
-
-    <!-- Fondo animado -->
-    <div class="bg"></div>
-    <div class="grain"></div>
-
-    <!-- Orbes de luz -->
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-
-    <!-- Líneas geométricas decorativas -->
-    <div class="geo">
-      <svg viewBox="0 0 1440 900" fill="none" preserveAspectRatio="xMidYMid slice">
-        <line x1="0"    y1="900" x2="600"  y2="0"   stroke="rgba(155,29,82,0.07)"   stroke-width="1"/>
-        <line x1="200"  y1="900" x2="800"  y2="0"   stroke="rgba(92,26,122,0.05)"   stroke-width="1"/>
-        <line x1="1440" y1="0"   x2="900"  y2="900" stroke="rgba(184,127,212,0.05)" stroke-width="1"/>
-        <circle cx="1100" cy="450" r="380" stroke="rgba(139,58,173,0.07)"  stroke-width="1" fill="none"/>
-        <circle cx="1100" cy="450" r="280" stroke="rgba(155,29,82,0.05)"   stroke-width="1" fill="none"/>
-      </svg>
-    </div>
-
-    <!-- ── Contenido principal (izquierda) ── -->
-    <div class="content">
-
-      <div class="eyebrow">
-        <div class="eyebrow-line"></div>
-        <span class="eyebrow-text">Placer sin tabúes · Desde siempre</span>
+      <div class="header-search">
+        <input type="text" placeholder="Buscar productos...">
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
       </div>
 
-      <h1 class="headline">
-        Tu placer,<br>
-        <em>sin límites</em><br>
-        <strong>sin vergüenza.</strong>
-      </h1>
-
-      <div class="divider">
-        <div class="divider-line"></div>
-        <div class="divider-diamond"></div>
-      </div>
-
-      <p class="description">
-        Descubre una experiencia de compra <span>íntima, segura y elegante.</span>
-        Productos cuidadosamente seleccionados para quienes se atreven
-        a explorar su sensualidad con total libertad.
-      </p>
-
-      <div class="actions">
-        <a href="#" class="cta">
-          Explorar ahora
-          <div class="cta-arrow"></div>
+      <div class="header-actions">
+        <a href="#" aria-label="Mi cuenta"><i class="fa-regular fa-user"></i></a>
+        <a href="#" aria-label="Favoritos"><i class="fa-regular fa-heart"></i></a>
+        <a href="#" class="cart-btn" aria-label="Carrito">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-count">3</span>
         </a>
-        <a href="#" class="cta-ghost">Ver colecciones</a>
       </div>
-
     </div>
 
-    <!-- ── Panel visual (derecha) ── -->
-    <div class="visual-panel">
-      <div class="circle-frame">
+    <nav class="header-nav">
+      <ul>
+        <li><a href="#">Para ellas</a></li>
+        <li><a href="#">Para ellos</a></li>
+        <li><a href="#">Para parejas</a></li>
+        <li><a href="#">Lubricantes</a></li>
+        <li><a href="#">Lencería</a></li>
+        <li><a href="#" class="nav-sale">Ofertas</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        <div class="circle-outer">
-          <div class="circle-tick"></div>
+  <main>
+
+    <!-- Cursor personalizado -->
+    <div class="cursor"      id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
+    <section class="hero">
+
+      <!-- Fondo animado -->
+      <div class="bg"></div>
+      <div class="grain"></div>
+
+      <!-- Orbes de luz -->
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+
+      <!-- Líneas geométricas decorativas -->
+      <div class="geo">
+        <svg viewBox="0 0 1440 900" fill="none" preserveAspectRatio="xMidYMid slice">
+          <line x1="0"    y1="900" x2="600"  y2="0"   stroke="rgba(155,29,82,0.07)"   stroke-width="1"/>
+          <line x1="200"  y1="900" x2="800"  y2="0"   stroke="rgba(92,26,122,0.05)"   stroke-width="1"/>
+          <line x1="1440" y1="0"   x2="900"  y2="900" stroke="rgba(184,127,212,0.05)" stroke-width="1"/>
+          <circle cx="1100" cy="450" r="380" stroke="rgba(139,58,173,0.07)"  stroke-width="1" fill="none"/>
+          <circle cx="1100" cy="450" r="280" stroke="rgba(155,29,82,0.05)"   stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- ── Contenido principal (izquierda) ── -->
+      <div class="content">
+
+        <div class="eyebrow">
+          <div class="eyebrow-line"></div>
+          <span class="eyebrow-text">Placer sin tabúes · Desde siempre</span>
         </div>
-        <div class="circle-mid"></div>
 
-        <div class="circle-inner">
-          <div class="circle-emoji"></div>
-          <div class="circle-tag">ShopySex Collection</div>
+        <h1 class="headline">
+          Tu placer,<br>
+          <em>sin límites</em><br>
+          <strong>sin vergüenza.</strong>
+        </h1>
+
+        <div class="divider">
+          <div class="divider-line"></div>
+          <div class="divider-diamond"></div>
         </div>
 
-        <div class="badge badge-1">
-          <span class="badge-dot"></span>Envío discreto 24h
+        <p class="description">
+          Descubre una experiencia de compra <span>íntima, segura y elegante.</span>
+          Productos cuidadosamente seleccionados para quienes se atreven
+          a explorar su sensualidad con total libertad.
+        </p>
+
+        <div class="actions">
+          <a href="#" class="cta">
+            Explorar ahora
+            <div class="cta-arrow"></div>
+          </a>
+          <a href="#" class="cta-ghost">Ver colecciones</a>
         </div>
-        <div class="badge badge-2">
-          <span class="badge-dot"></span>+500 productos
+
+      </div>
+
+      <!-- ── Panel visual (derecha) ── -->
+      <div class="visual-panel">
+        <div class="circle-frame">
+
+          <div class="circle-outer">
+            <div class="circle-tick"></div>
+          </div>
+          <div class="circle-mid"></div>
+
+          <div class="circle-inner">
+            <div class="circle-emoji"></div>
+            <div class="circle-tag">ShopySex Collection</div>
+          </div>
+
+          <div class="badge badge-1">
+            <span class="badge-dot"></span>Envío discreto 24h
+          </div>
+          <div class="badge badge-2">
+            <span class="badge-dot"></span>+500 productos
+          </div>
+          <div class="badge badge-3">
+            <span class="badge-dot"></span>100% privado
+          </div>
+
         </div>
-        <div class="badge badge-3">
-          <span class="badge-dot"></span>100% privado
+      </div>
+
+      <!-- ── Barra de confianza ── -->
+      <div class="trust">
+        <div class="trust-item">
+          <span class="trust-icon">🔒</span> Pago seguro
         </div>
-
+        <div class="trust-sep"></div>
+        <div class="trust-item">
+          <span class="trust-icon">📦</span> Envío discreto
+        </div>
+        <div class="trust-sep"></div>
+        <div class="trust-item">
+          <span class="trust-icon">🔄</span> Devoluciones fáciles
+        </div>
       </div>
-    </div>
 
-    <!-- ── Barra de confianza ── -->
-    <div class="trust">
-      <div class="trust-item">
-        <span class="trust-icon">🔒</span> Pago seguro
+      <!-- ── Indicador de scroll ── -->
+      <div class="scroll-hint">
+        <span class="scroll-text">Descubre</span>
+        <div class="scroll-line"></div>
       </div>
-      <div class="trust-sep"></div>
-      <div class="trust-item">
-        <span class="trust-icon"</span> 
-      </div>
-      <div class="trust-sep"></div>
-      <div class="trust-item">
-        <span class="trust-icon"></span> 
-      </div>
-    </div>
 
-    <!-- ── Indicador de scroll ── -->
-    <div class="scroll-hint">
-      <span class="scroll-text">Descubre</span>
-      <div class="scroll-line"></div>
-    </div>
+    </section>
 
-  </section>
+  </main>
 
-  <script>
-    const cursor = document.getElementById('cursor');
-    const ring   = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX;
-      my = e.clientY;
-    });
-
-    function animateCursor() {
-      cursor.style.left = mx + 'px';
-      cursor.style.top  = my + 'px';
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.left = rx + 'px';
-      ring.style.top  = ry + 'px';
-      requestAnimationFrame(animateCursor);
-    }
-
-    animateCursor();
-  </script>
-  <article class="card">
-    <div class="card__img-wrap">
-      <img src="img/1-removebg-preview.png" alt="Pipi" />
-      <span class="card__badge">Nuevo</span>
-    </div>
-    <div class="card__body">
-      <span class="card__category">Accesorios</span>
-      <h2 class="card__name">Apasionador 3000 mil</h2>
-      <p class="card__desc">Vibrador Adultos, Cönśolãđóres Para Mujer, Juguetes Sëxüàlēs Estimulador Clítörìdēõ, Ŝēx Toys Adultos, Flexibilidad, Perfectas Para Principiantes Operación Simple.</p>
-    </div>
-    <div class="card__footer">
-      <div class="card__price">
-        <span class="original">$189.000</span>
-        <span class="current">$149.000</span>
-      </div>
-      <button class="card__btn">Agregar</button>
-    </div>
-  </article>
-
- 
-  <article class="card">
-    <div class="card__img-wrap">
-      <img src="img/2-removebg-preview.png" alt="Paracaidas" />
-    </div>
-    <div class="card__body">
-      <span class="card__category">Paracaidas</span>
-      <h2 class="card__name">Oooooochurus</h2>
-      <p class="card__desc">BDSM Door Sex Swing Bondage,Sex Swings Sex Bondage Kit Sex Toys for Couples, Adult Toys Sex Restraints BDSM Sex Toy with Adjustable Nylon Straps Sex Sling Sex Furniture Sex Chair, Holds Up to 300lbs(.</p>
-    </div>
-    <div class="card__footer">
-      <div class="card__price">
-        <span class="current">$215.000</span>
-      </div>
-      <button class="card__btn">Agregar</button>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="card__img-wrap">
-      <img src="img/3-removebg-preview.png" alt="traje" />
-      <span class="card__badge">-20%</span>
-    </div>
-    <div class="card__body">
-      <span class="card__category">Trajes</span>
-      <h2 class="card__name">Gatita Salvaje</h2>
-      <p class="card__desc">Leg Avenue Women's 6 Piece Bondage Bunny Costume, Black, Large.</p>
-    </div>
-    <div class="card__footer">
-      <div class="card__price">
-        <span class="original">$320.000</span>
-        <span class="current">$256.000</span>
-      </div>
-      <button class="card__btn">Agregar</button>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="card__img-wrap">
-      <img src="img/4-removebg-preview.png" alt="mouse" />
-    </div>
-    <div class="card__body">
-      <span class="card__category">Raton</span>
-      <h2 class="card__name">Raton jugueton</h2>
-      <p class="card__desc">Adult sex toys,Self-use sex toys,Female wired sex toys for adults,Waterproof,Multi-frequency,Couples,Massage(Black).</p>
-    </div>
-    <div class="card__footer">
-      <div class="card__price">
-        <span class="current">$48.000</span>
-      </div>
-      <button class="card__btn">Agregar</button>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="card__img-wrap">
-      <img src="img/5-removebg-preview.png" alt="boquita" />
-      <span class="card__badge">Popular</span>
-    </div>
-    <div class="card__body">
-      <span class="card__category">lenguita</span>
-      <h2 class="card__name">Boquita deliciosa</h2>
-      <p class="card__desc">Vibradorador Para Mujer, Clítôrīś Y Pēżón, Sēx Toys Adultos, Modos Múltiples De Función Juguetes Erótìćõš Para Pareja Sēxūalëš, Mujer Plāčër Juguetes Sěxừalêś, Ajuste Perfecto.</p>
-    </div>
-    <div class="card__footer">
-      <div class="card__price">
-        <span class="original">$198.000</span>
-        <span class="current">$165.000</span>
-      </div>
-      <button class="card__btn">Agregar</button>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="card__img-wrap">
-      <img src="img/6-removebg-preview.png" alt="banana" />
-    </div>
-    <div class="card__body">
-      <span class="card__category">Bananita</span>
-      <h2 class="card__name">Bananita deliciosa</h2>
-      <p class="card__desc">Vibradores Femenino Para Mujer, Juguetes Șëxyš, Pừņțổ G Estimulador, Ŝēx Toys Adultos, Alta Calidad, Herramienta Mäšțürbación, Modos Múltiples De Función.</p>
-    </div>
-    <div class="card__footer">
-      <div class="card__price">
-        <span class="current">$489.000</span>
-      </div>
-      <button class="card__btn">Agregar</button>
-    </div>
-  </article>
-
-
-    </main>
-
-    <footer class="site-footer" role="contentinfo">
+  <!-- ══ FOOTER ══════════════════════════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
- 
+
       <div class="footer-grid stagger">
- 
+
         <!-- Columna 1: Marca + descripción + redes -->
         <div class="reveal">
           <p class="footer-logo">ShopySex</p>
@@ -304,7 +175,7 @@
             Tu espacio de bienestar íntimo. Productos de calidad seleccionados
             con discreción, entregados con elegancia. Porque el placer es un arte.
           </p>
- 
+
           <nav class="socials" aria-label="Redes sociales">
             <!-- Instagram -->
             <a href="#" class="social-btn" aria-label="Instagram">
@@ -331,8 +202,8 @@
               </svg>
             </a>
           </nav>
-        </div><!-- /col marca -->
- 
+        </div>
+
         <!-- Columna 2: Tienda -->
         <div class="reveal">
           <h3 class="footer-col-title">Tienda</h3>
@@ -345,7 +216,7 @@
             <li><a href="#">Ofertas</a></li>
           </ul>
         </div>
- 
+
         <!-- Columna 3: Soporte -->
         <div class="reveal">
           <h3 class="footer-col-title">Soporte</h3>
@@ -357,7 +228,7 @@
             <li><a href="#">Seguimiento</a></li>
           </ul>
         </div>
- 
+
         <!-- Columna 4: Contacto -->
         <div class="reveal">
           <h3 class="footer-col-title">Contacto</h3>
@@ -368,7 +239,7 @@
           <div class="contact-item">
             <span class="ci-icon" aria-hidden="true">💬</span>
             <span>
-              Chat privado<br />
+              Chat privado<br>
               <small style="color:var(--dim);font-size:.78rem">Lun–Vie · 9am–7pm</small>
             </span>
           </div>
@@ -383,9 +254,9 @@
             </span>
           </div>
         </div>
- 
+
       </div><!-- /footer-grid -->
- 
+
       <!-- ── Barra inferior ── -->
       <div class="footer-bottom">
         <div class="footer-bottom-left">
@@ -399,7 +270,7 @@
             <li><a href="#">Solo +18</a></li>
           </ul>
         </div>
- 
+
         <div class="sec-chips" role="list" aria-label="Sellos de seguridad">
           <span class="sec-chip" role="listitem">
             <span class="green" aria-hidden="true"></span> SSL Activo
@@ -412,12 +283,11 @@
           </span>
         </div>
       </div>
- 
+
     </div><!-- /footer-inner -->
   </footer>
-    
 
-      <!-- ── Aviso de mayoría de edad ── -->
+  <!-- ── Aviso de mayoría de edad ── -->
   <div class="adult-bar" role="note">
     <p>
       <strong>Contenido exclusivo para mayores de 18 años.</strong>
@@ -425,6 +295,44 @@
       Todos los pedidos se envían en embalaje neutro sin identificación del contenido.
     </p>
   </div>
-  
+
+  <script>
+    /* ── Año dinámico ── */
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    /* ── Cursor personalizado ── */
+    const cursor = document.getElementById('cursor');
+    const ring   = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX;
+      my = e.clientY;
+    });
+
+    function animateCursor() {
+      cursor.style.left = mx + 'px';
+      cursor.style.top  = my + 'px';
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    /* ── Animaciones de entrada on-scroll ── */
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  </script>
+
 </body>
 </html>

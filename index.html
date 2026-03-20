@@ -46,7 +46,140 @@
     </header>
 
     <main>
+        <!-- Cursor personalizado -->
+  <div class="cursor"      id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
+  <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
+  <section class="hero">
+
+    <!-- Fondo animado -->
+    <div class="bg"></div>
+    <div class="grain"></div>
+
+    <!-- Orbes de luz -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Líneas geométricas decorativas -->
+    <div class="geo">
+      <svg viewBox="0 0 1440 900" fill="none" preserveAspectRatio="xMidYMid slice">
+        <line x1="0"    y1="900" x2="600"  y2="0"   stroke="rgba(155,29,82,0.07)"   stroke-width="1"/>
+        <line x1="200"  y1="900" x2="800"  y2="0"   stroke="rgba(92,26,122,0.05)"   stroke-width="1"/>
+        <line x1="1440" y1="0"   x2="900"  y2="900" stroke="rgba(184,127,212,0.05)" stroke-width="1"/>
+        <circle cx="1100" cy="450" r="380" stroke="rgba(139,58,173,0.07)"  stroke-width="1" fill="none"/>
+        <circle cx="1100" cy="450" r="280" stroke="rgba(155,29,82,0.05)"   stroke-width="1" fill="none"/>
+      </svg>
+    </div>
+
+    <!-- ── Contenido principal (izquierda) ── -->
+    <div class="content">
+
+      <div class="eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Placer sin tabúes · Desde siempre</span>
+      </div>
+
+      <h1 class="headline">
+        Tu placer,<br>
+        <em>sin límites</em><br>
+        <strong>sin vergüenza.</strong>
+      </h1>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-diamond"></div>
+      </div>
+
+      <p class="description">
+        Descubre una experiencia de compra <span>íntima, segura y elegante.</span>
+        Productos cuidadosamente seleccionados para quienes se atreven
+        a explorar su sensualidad con total libertad.
+      </p>
+
+      <div class="actions">
+        <a href="#" class="cta">
+          Explorar ahora
+          <div class="cta-arrow"></div>
+        </a>
+        <a href="#" class="cta-ghost">Ver colecciones</a>
+      </div>
+
+    </div>
+
+    <!-- ── Panel visual (derecha) ── -->
+    <div class="visual-panel">
+      <div class="circle-frame">
+
+        <div class="circle-outer">
+          <div class="circle-tick"></div>
+        </div>
+        <div class="circle-mid"></div>
+
+        <div class="circle-inner">
+          <div class="circle-emoji"></div>
+          <div class="circle-tag">ShopySex Collection</div>
+        </div>
+
+        <div class="badge badge-1">
+          <span class="badge-dot"></span>Envío discreto 24h
+        </div>
+        <div class="badge badge-2">
+          <span class="badge-dot"></span>+500 productos
+        </div>
+        <div class="badge badge-3">
+          <span class="badge-dot"></span>100% privado
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Barra de confianza ── -->
+    <div class="trust">
+      <div class="trust-item">
+        <span class="trust-icon">🔒</span> Pago seguro
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <span class="trust-icon"</span> 
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <span class="trust-icon"></span> 
+      </div>
+    </div>
+
+    <!-- ── Indicador de scroll ── -->
+    <div class="scroll-hint">
+      <span class="scroll-text">Descubre</span>
+      <div class="scroll-line"></div>
+    </div>
+
+  </section>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    const ring   = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX;
+      my = e.clientY;
+    });
+
+    function animateCursor() {
+      cursor.style.left = mx + 'px';
+      cursor.style.top  = my + 'px';
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+
+    animateCursor();
+  </script>
     </main>
 
     <footer class="site-footer" role="contentinfo">

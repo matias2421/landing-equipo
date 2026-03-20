@@ -231,3 +231,746 @@ header {
   text-align: center;
   opacity: 0.4;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   shopysex-styles.css
+   Paleta erótica premium · ShopySex
+   Inspirada en: lencería de lujo, terciopelo oscuro, vino tinto,
+   piel suave, ambientes íntimos iluminados con velas.
+═══════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────────────────────
+   CUSTOM PROPERTIES (tokens de diseño)
+────────────────────────────────────────────────────────── */
+:root {
+  /* Fondos */
+  --bg-void:        #07050b;   /* negro casi puro, profundo */
+  --bg-deep:        #0f0a15;   /* aubergine oscurísimo */
+  --bg-card:        #160d20;   /* morado noche */
+  --bg-card-hover:  #1e1030;
+
+  /* Paleta erótica principal */
+  --rouge:          #9b1d52;   /* rojo carmín — deseo */
+  --rouge-light:    #c4336e;   /* rosa frambuesa */
+  --blush:          #e8658a;   /* rosa piel cálido */
+  --blush-pale:     #f0a0b8;   /* blush suave */
+  --velvet:         #5c1a7a;   /* morado terciopelo */
+  --velvet-mid:     #8b3aad;   /* orquídea */
+  --velvet-glow:    #b87fd4;   /* lavanda brillante */
+  --wine:           #3d0c24;   /* vino tinto oscuro */
+  --ivory:          #f5eef2;   /* marfil cálido */
+  --ivory-dim:      #c9b8c4;   /* marfil apagado */
+  --dim:            #6d5578;   /* ciruela apagada */
+  --border:         rgba(196, 51, 110, 0.2);
+  --border-focus:   rgba(232, 101, 138, 0.6);
+
+  /* Tipografía */
+  --font-display:   'Playfair Display', Georgia, serif;
+  --font-body:      'Jost', sans-serif;
+
+  /* Radios */
+  --r-sm:   8px;
+  --r-md:   16px;
+  --r-lg:   28px;
+  --r-pill: 999px;
+
+  /* Transiciones */
+  --t-fast:   180ms ease-in-out;
+  --t-base:   320ms ease-in-out;
+  --t-slow:   600ms ease-in-out;
+
+  /* Sombras */
+  --shadow-card:   0 24px 80px rgba(0,0,0,0.6), 0 4px 20px rgba(155,29,82,0.12);
+  --shadow-input:  0 0 0 3px rgba(232, 101, 138, 0.22), 0 0 24px rgba(155,29,82,0.25);
+  --shadow-btn:    0 0 40px rgba(196,51,110,0.5), 0 0 80px rgba(92,26,122,0.3);
+}
+
+/* ──────────────────────────────────────────────────────────
+   RESET & BASE
+────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-void);
+  color: var(--ivory);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ──────────────────────────────────────────────────────────
+   CURSOR PERSONALIZADO
+   Punto pequeño (sigue exacto) + anillo con inercia (lerp JS)
+────────────────────────────────────────────────────────── */
+* { cursor: none !important; }
+
+#cursor-dot {
+  position: fixed; top: 0; left: 0; z-index: 9999;
+  width: 8px; height: 8px;
+  background: var(--blush);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: width .2s, height .2s, background .2s;
+}
+
+#cursor-ring {
+  position: fixed; top: 0; left: 0; z-index: 9998;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(232,101,138,0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform .12s ease-out, width .3s, height .3s, border-color .3s;
+}
+
+/* Expande el cursor al pasar sobre elementos interactivos */
+body:has(a:hover) #cursor-dot,
+body:has(button:hover) #cursor-dot   { width: 14px; height: 14px; background: var(--rouge-light); }
+body:has(a:hover) #cursor-ring,
+body:has(button:hover) #cursor-ring  { width: 52px; height: 52px; border-color: rgba(196,51,110,0.7); }
+
+/* ──────────────────────────────────────────────────────────
+   ANIMACIONES DE ENTRADA (fade + slide-up)
+   Los elementos arrancan invisibles y se revelan cuando
+   IntersectionObserver añade la clase .is-visible.
+   El cubic-bezier genera un ligero overshoot "elástico".
+────────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity .8s cubic-bezier(.22,.68,0,1.2),
+              transform .8s cubic-bezier(.22,.68,0,1.2);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Stagger: cada hijo directo recibe un delay incremental */
+.stagger > *:nth-child(1) { transition-delay: .05s; }
+.stagger > *:nth-child(2) { transition-delay: .15s; }
+.stagger > *:nth-child(3) { transition-delay: .25s; }
+.stagger > *:nth-child(4) { transition-delay: .35s; }
+.stagger > *:nth-child(5) { transition-delay: .45s; }
+.stagger > *:nth-child(6) { transition-delay: .55s; }
+
+/* ──────────────────────────────────────────────────────────
+   KEYFRAMES
+────────────────────────────────────────────────────────── */
+
+/* Orbes de fondo: movimiento orgánico con leve rotación */
+@keyframes drift {
+  0%   { transform: translate(0, 0)       scale(1)    rotate(0deg);  }
+  33%  { transform: translate(20px,-15px) scale(1.04) rotate(2deg);  }
+  66%  { transform: translate(-12px,12px) scale(.97)  rotate(-1deg); }
+  100% { transform: translate(0, 0)       scale(1)    rotate(0deg);  }
+}
+
+/* Pulso del dot de seguridad (verde) */
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0   rgba(52,211,153,0.5); }
+  50%       { box-shadow: 0 0 0 6px rgba(52,211,153,0);   }
+}
+
+/* Shimmer del botón CTA */
+@keyframes shimmer {
+  from { transform: translateX(-120%); }
+  to   { transform: translateX(120%);  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   SECCIÓN CTA
+   Layout split: columna de texto (izq.) + tarjeta form (der.)
+────────────────────────────────────────────────────────── */
+.cta-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 24px;
+  overflow: hidden;
+}
+
+/* Gradiente radial multicapa para atmósfera erótica */
+.cta-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 70% at 15% 50%,  rgba(92,26,122,.3)  0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 85% 20%,  rgba(155,29,82,.25) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 60% 90%,  rgba(61,12,36,.6)   0%, transparent 65%),
+    linear-gradient(160deg, #0f0a15 0%, #07050b 100%);
+  pointer-events: none;
+}
+
+/* Textura de grano sobre el fondo */
+.cta-section::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Orbes decorativos (animados con drift) */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+.orb-1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(92,26,122,.35), transparent 70%);
+  top: -200px; left: -200px;
+  animation: drift 14s ease-in-out infinite;
+}
+.orb-2 {
+  width: 450px; height: 450px;
+  background: radial-gradient(circle, rgba(155,29,82,.3), transparent 70%);
+  bottom: -150px; right: -100px;
+  animation: drift 18s ease-in-out infinite reverse;
+}
+.orb-3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(232,101,138,.15), transparent 70%);
+  top: 40%; right: 20%;
+  animation: drift 11s ease-in-out infinite 3s;
+}
+
+/* Grid 2 columnas */
+.cta-layout {
+  position: relative;
+  z-index: 1;
+  max-width: 1080px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px 80px;
+  align-items: center;
+}
+
+/* ── Eyebrow chip ── */
+.cta-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: 1px solid rgba(232,101,138,.3);
+  border-radius: var(--r-pill);
+  background: rgba(232,101,138,.06);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--blush);
+  margin-bottom: 28px;
+}
+
+/* Dot pulsante dentro del eyebrow */
+.cta-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--blush);
+  box-shadow: 0 0 8px var(--blush);
+  animation: pulse-dot 2s ease infinite;
+}
+
+/* ── Titular ── */
+.cta-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--ivory);
+  margin-bottom: 22px;
+}
+
+/* Texto degradado en el <em> del headline */
+.cta-headline em {
+  font-style: italic;
+  font-weight: 400;
+  background: linear-gradient(125deg, var(--blush) 0%, var(--rouge-light) 40%, var(--velvet-glow) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cta-sub {
+  font-size: 1rem;
+  color: var(--ivory-dim);
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 360px;
+  margin-bottom: 36px;
+}
+
+/* ── Lista de beneficios ── */
+.cta-perks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cta-perks li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .875rem;
+  color: var(--ivory-dim);
+}
+
+.perk-icon {
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--r-sm);
+  background: rgba(155,29,82,.18);
+  border: 1px solid rgba(196,51,110,.25);
+  font-size: .85rem;
+  flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────────────────────
+   TARJETA DEL FORMULARIO
+────────────────────────────────────────────────────────── */
+.form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 48px 44px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Línea de luz en el borde superior */
+.form-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232,101,138,.7), rgba(139,58,173,.7), transparent);
+}
+
+/* Reflejo de luz interior sutil */
+.form-card::after {
+  content: '';
+  position: absolute;
+  top: -80px; left: -80px;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, rgba(155,29,82,.12), transparent 70%);
+  pointer-events: none;
+}
+
+.form-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  margin-bottom: 6px;
+  color: var(--ivory);
+}
+
+.form-desc {
+  font-size: .82rem;
+  color: var(--dim);
+  margin-bottom: 36px;
+}
+
+/* ──────────────────────────────────────────────────────────
+   FLOATING LABELS
+   Técnica: label es sibling posterior al input.
+   Cuando input tiene :focus o :not(:placeholder-shown),
+   el label sube con transform + reduce su tamaño.
+────────────────────────────────────────────────────────── */
+.field {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.field input {
+  width: 100%;
+  padding: 20px 18px 10px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(196,51,110,.2);
+  border-radius: var(--r-md);
+  color: var(--ivory);
+  font-family: var(--font-body);
+  font-size: .9rem;
+  font-weight: 300;
+  outline: none;
+  transition:
+    border-color var(--t-base),
+    box-shadow   var(--t-base),
+    background   var(--t-base);
+  -webkit-appearance: none;
+}
+
+/* Autocompletar oscuro (evita el fondo blanco del browser) */
+.field input:-webkit-autofill,
+.field input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 100px #160d20 inset !important;
+  -webkit-text-fill-color: var(--ivory) !important;
+}
+
+/* Glow elegante al focus */
+.field input:focus {
+  border-color: var(--rouge-light);
+  box-shadow: var(--shadow-input);
+  background: rgba(155,29,82,.07);
+}
+
+/* Label en posición central (estado inicial) */
+.field label {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: .9rem;
+  font-weight: 300;
+  color: var(--dim);
+  pointer-events: none;
+  transition:
+    top        var(--t-base),
+    transform  var(--t-base),
+    font-size  var(--t-base),
+    color      var(--t-base);
+}
+
+/* Label flota hacia arriba cuando el input está activo o tiene valor */
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label {
+  top: 14px;
+  transform: translateY(0);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--blush);
+}
+
+/* Ícono decorativo a la derecha del input */
+.field-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: .9rem;
+  color: var(--dim);
+  transition: color var(--t-base);
+  pointer-events: none;
+}
+.field input:focus ~ .field-icon { color: var(--blush); }
+
+/* ──────────────────────────────────────────────────────────
+   BOTÓN DE ENVÍO
+   Hover: scale + cambio de posición del gradiente + glow + shimmer
+────────────────────────────────────────────────────────── */
+.btn-submit {
+  width: 100%;
+  padding: 17px 32px;
+  margin-top: 8px;
+  background: linear-gradient(135deg, var(--rouge) 0%, var(--rouge-light) 50%, var(--velvet-mid) 100%);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  border: none;
+  border-radius: var(--r-pill);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: .85rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform           var(--t-fast),
+    box-shadow          var(--t-base),
+    background-position .5s ease,
+    filter              var(--t-base);
+}
+
+/* Pseudo-elemento para el efecto shimmer */
+.btn-submit::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+  transform: translateX(-120%);
+}
+
+.btn-submit:hover {
+  transform: scale(1.025) translateY(-1px);
+  box-shadow: var(--shadow-btn);
+  background-position: 100% 50%;
+  filter: brightness(1.1);
+}
+/* Shimmer se activa en hover */
+.btn-submit:hover::before { animation: shimmer .6s ease forwards; }
+.btn-submit:active         { transform: scale(.98); box-shadow: none; }
+
+/* ── Badge de confianza ── */
+.trust-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-size: .75rem;
+  color: var(--dim);
+  letter-spacing: .04em;
+}
+
+.trust-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 8px #34d399;
+  animation: pulse-dot 2.5s ease infinite;
+  flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────────────────────
+   SEPARADOR ENTRE SECCIONES
+────────────────────────────────────────────────────────── */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rouge-light), var(--velvet-mid), transparent);
+  opacity: .3;
+}
+
+/* ──────────────────────────────────────────────────────────
+   FOOTER
+────────────────────────────────────────────────────────── */
+.site-footer {
+  background: var(--bg-deep);
+  border-top: 1px solid var(--border);
+  padding: 80px 24px 0;
+}
+
+.footer-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* Grid 4 columnas */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  gap: 48px 40px;
+  padding-bottom: 60px;
+}
+
+/* Logo con degradado */
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  background: linear-gradient(125deg, var(--blush-pale), var(--rouge-light), var(--velvet-glow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.footer-about {
+  font-size: .85rem;
+  color: var(--dim);
+  line-height: 1.7;
+  max-width: 240px;
+  margin-bottom: 28px;
+}
+
+/* ── Botones de redes sociales ── */
+.socials { display: flex; gap: 10px; }
+
+.social-btn {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--r-md);
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  color: var(--dim);
+  font-size: .9rem;
+  /* Microinteracción: lift + glow */
+  transition:
+    background    var(--t-base),
+    border-color  var(--t-base),
+    color         var(--t-base),
+    transform     var(--t-fast),
+    box-shadow    var(--t-base);
+}
+
+.social-btn:hover {
+  background: rgba(196,51,110,.15);
+  border-color: rgba(196,51,110,.5);
+  color: var(--blush);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(155,29,82,.25);
+}
+
+/* ── Títulos de columna ── */
+.footer-col-title {
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 20px;
+}
+
+/* ── Listas de navegación ── */
+.footer-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.footer-nav a {
+  font-size: .855rem;
+  color: var(--ivory-dim);
+  position: relative;
+  transition: color var(--t-base), padding-left var(--t-base);
+}
+
+/* Flecha que aparece y se desliza al hover */
+.footer-nav a::before {
+  content: '›';
+  position: absolute;
+  left: -14px;
+  opacity: 0;
+  color: var(--rouge-light);
+  transition: opacity var(--t-base), left var(--t-base);
+}
+
+.footer-nav a:hover              { color: var(--ivory); padding-left: 10px; }
+.footer-nav a:hover::before      { opacity: 1; left: -4px; }
+
+/* ── Contacto ── */
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: .855rem;
+  color: var(--ivory-dim);
+  margin-bottom: 14px;
+}
+
+.contact-item .ci-icon {
+  color: var(--rouge-light);
+  margin-top: 1px;
+  flex-shrink: 0;
+  font-size: .9rem;
+}
+
+/* ── Barra inferior del footer ── */
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 24px 0 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.footer-bottom-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 24px;
+}
+
+.copyright {
+  font-size: .75rem;
+  color: var(--dim);
+}
+
+.legal-links {
+  display: flex;
+  gap: 18px;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.legal-links a {
+  font-size: .75rem;
+  color: var(--dim);
+  transition: color var(--t-base);
+}
+.legal-links a:hover { color: var(--ivory-dim); }
+
+/* ── Chips de seguridad ── */
+.sec-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.sec-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: var(--r-pill);
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(155,29,82,.2);
+  font-size: .7rem;
+  color: var(--dim);
+  letter-spacing: .04em;
+  transition: border-color var(--t-base), color var(--t-base);
+}
+.sec-chip:hover { border-color: rgba(196,51,110,.45); color: var(--ivory-dim); }
+
+/* Dot verde de estado */
+.sec-chip .green {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 6px #34d399;
+  flex-shrink: 0;
+}
+
+/* ── Disclaimer adultos ── */
+.adult-bar {
+  background: var(--wine);
+  border-top: 1px solid rgba(155,29,82,.3);
+  padding: 14px 24px;
+  text-align: center;
+}
+
+.adult-bar p {
+  font-size: .72rem;
+  color: rgba(245,238,242,.45);
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+.adult-bar strong { color: rgba(245,238,242,.7); font-weight: 500; }
+
+/* ──────────────────────────────────────────────────────────
+   RESPONSIVE — Mobile First
+────────────────────────────────────────────────────────── */
+@media (max-width: 920px) {
+  .cta-layout  { grid-template-columns: 1fr; gap: 48px; }
+  .cta-sub     { max-width: 100%; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px 28px; }
+}
+
+@media (max-width: 560px) {
+  .cta-section    { padding: 72px 20px; }
+  .form-card      { padding: 36px 24px; }
+  .footer-grid    { grid-template-columns: 1fr; }
+  .footer-bottom  { flex-direction: column; align-items: flex-start; }
+}
